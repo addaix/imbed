@@ -123,7 +123,7 @@ The returned object exposes:
     distance approximates cosine distance — appropriate for semantic
     embeddings.
   * **\*\*kmeans_kwargs** – Passed to `sklearn.cluster.KMeans`.
-* **Return type:**
+* **Returns:**
   `_FittedKMeans` instance.
 
 ### imbed.components.clusterization.get_clusterer(name)

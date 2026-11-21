@@ -25,7 +25,7 @@
 - [imbed.tools](_autosummary/imbed.tools.html.md): Tools around imbeddings tasks
 - [imbed.util](_autosummary/imbed.util.html.md): Utils for imbed package.
 - [imbed.vector_db](_autosummary/imbed.vector_db.html.md): Facades for vector databases
-- [About this build](about-this-build.html.md): This documentation was built on &#42;&#42;2026-10-13 15:37 UTC&#42;&#42; from commit &lt;a href="https://github.com/tho...
+- [About this build](about-this-build.html.md): This documentation was built on &#42;&#42;2026-11-21 15:08 UTC&#42;&#42; from commit &lt;a href="https://github.com/add...
 
 ## Optional
 

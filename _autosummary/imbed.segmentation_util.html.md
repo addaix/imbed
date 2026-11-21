@@ -43,17 +43,17 @@ Yield chunks of rows from a DataFrame.
 The yielded chunks are lists of (index, row) tuples.
 
 * **Return type:**
-  [*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[*ChunkBasedObj*]
+  [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[`ChunkBasedObj`]
 
 ### imbed.segmentation_util.chunk_mapping(mapping, chunker=None)
 
 Use the chunker to chunk the items of mapping, yielding sub-mappings
 
 * **Parameters:**
-  * **chunker** (`Union`[[`Callable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)[[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`IterableToChunk`, bound= [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`T`)])], [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`Chunk`, bound= [`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`T`)])]], [`int`](https://docs.python.org/3/builtins/functions.html#int)]) – a chunker function
-  * **mapping** ([`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`KT`), [`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`T`)]) – a mapping of items
+  * **chunker** ([`Union`](https://docs.python.org/3/library/typing.html#typing.Union)[[`Callable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)[[`IterableToChunk`], [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[`Chunk`]], [`int`](https://docs.python.org/3/builtins/functions.html#int)]) – a chunker function
+  * **mapping** ([`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)[`KT`, `T`]) – a mapping of items
 * **Return type:**
-  [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`KT`), [`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`T`)]]
+  [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)[`KT`, `T`]]
 * **Returns:**
   an iterator of sub-mappings in the form of dictionaries
 
@@ -76,7 +76,7 @@ The start_at, stop_at act like slices indices for a list: start_at is included
 and stop_at is excluded
 
 * **Parameters:**
-  * **it** ([`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`T`)]) – iterator of elements of any type
+  * **it** ([`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[`T`]) – iterator of elements of any type
   * **chk_size** ([`int`](https://docs.python.org/3/builtins/functions.html#int)) – length of the chunks
   * **chk_step** ([`int`](https://docs.python.org/3/builtins/functions.html#int) | [`None`](https://docs.python.org/3/builtins/constants.html#None)) – step between chunks
   * **start_at** ([`int`](https://docs.python.org/3/builtins/functions.html#int) | [`None`](https://docs.python.org/3/builtins/constants.html#None)) – index of the first term of the iterator at which we begin building
@@ -87,7 +87,7 @@ and stop_at is excluded
     if set to true, any chunks with minimum index value no more than stop_at are
     returned but they contain term with index no more than stop_at
 * **Return type:**
-  [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`T`)]]
+  [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)[`T`]]
 * **Returns:**
   an iterator of the chunks
 
@@ -132,7 +132,7 @@ but these do not need to be of fixed size.
 The output will be though.
 
 * **Return type:**
-  [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`Chunk`, bound= [`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`T`)])]
+  [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[`Chunk`]
 
 ### imbed.segmentation_util.wrapped_chunker(src, chunker, \*, ingress=<function identity>, egress=<function identity>)
 
@@ -140,12 +140,12 @@ A function to extend chunking functionality to any source of iterables,
 with the ability to wrap the chunks in a function before yielding them.
 
 * **Parameters:**
-  * **src** ([`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`IterableSrc`, bound= [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`T`)])) – an iterable of items
-  * **chunker** (`Union`[[`Callable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)[[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`IterableToChunk`, bound= [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`T`)])], [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`Chunk`, bound= [`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`T`)])]], [`int`](https://docs.python.org/3/builtins/functions.html#int)]) – a chunker function or an integer
-  * **ingress** ([`Callable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)[[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`IterableSrc`, bound= [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`T`)])], [`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`IterableToChunk`, bound= [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`T`)])]) – a function to wrap the input iterable
-  * **egress** ([`Callable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)[[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`Chunk`, bound= [`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`T`)])], [`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`ChunkBasedObj`)]) – a function to wrap the output chunks
+  * **src** (`IterableSrc`) – an iterable of items
+  * **chunker** ([`Union`](https://docs.python.org/3/library/typing.html#typing.Union)[[`Callable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)[[`IterableToChunk`], [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[`Chunk`]], [`int`](https://docs.python.org/3/builtins/functions.html#int)]) – a chunker function or an integer
+  * **ingress** ([`Callable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)[[`IterableSrc`], `IterableToChunk`]) – a function to wrap the input iterable
+  * **egress** ([`Callable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)[[`Chunk`], `ChunkBasedObj`]) – a function to wrap the output chunks
 * **Return type:**
-  [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`ChunkBasedObj`)]
+  [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[`ChunkBasedObj`]
 * **Returns:**
   an iterator of chunk-based objects
 

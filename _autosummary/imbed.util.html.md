@@ -43,11 +43,11 @@ Utils for imbed package.
 Calls a function, awaiting it if it’s asynchronous, and running it in a thread if it’s synchronous.
 
 * **Parameters:**
-  * **func** ([`Callable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)[[[`ParamSpec`](https://docs.python.org/3/library/typing.html#typing.ParamSpec)(`P`, bound= [`None`](https://docs.python.org/3/builtins/constants.html#None))], [`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`R`)]) – The function to call.
-  * **\*args** ([`ParamSpecArgs`](https://docs.python.org/3/library/typing.html#typing.ParamSpecArgs)) – Positional arguments to pass to the function.
-  * **\*\*kwargs** ([`ParamSpecKwargs`](https://docs.python.org/3/library/typing.html#typing.ParamSpecKwargs)) – Keyword arguments to pass to the function.
+  * **func** ([`Callable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)[`P`, `R`]) – The function to call.
+  * **\*args** (`P.args`) – Positional arguments to pass to the function.
+  * **\*\*kwargs** (`P.kwargs`) – Keyword arguments to pass to the function.
 * **Return type:**
-  [`Coroutine`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Coroutine)[[`Any`](https://docs.python.org/3/library/typing.html#typing.Any), [`Any`](https://docs.python.org/3/library/typing.html#typing.Any), [`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`R`)]
+  [`Coroutine`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Coroutine)[[`Any`](https://docs.python.org/3/library/typing.html#typing.Any), [`Any`](https://docs.python.org/3/library/typing.html#typing.Any), `R`]
 * **Returns:**
   The result of the function call.
 
@@ -159,9 +159,9 @@ array([[0.   , 1.   , 0.707],
 Ensure that the embeddings are in the correct format.
 
 * **Parameters:**
-  **embeddings** ([`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`KT`), [`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)[[`float`](https://docs.python.org/3/builtins/functions.html#float)]]) – a dict of embeddings
+  **embeddings** ([`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)[`KT`, [`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)[[`float`](https://docs.python.org/3/builtins/functions.html#float)]]) – a dict of embeddings
 * **Return type:**
-  [`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`KT`), [`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)[[`float`](https://docs.python.org/3/builtins/functions.html#float)]]
+  [`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)[`KT`, [`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)[[`float`](https://docs.python.org/3/builtins/functions.html#float)]]
 * **Returns:**
   a dict of embeddings
 
@@ -173,9 +173,6 @@ If you pass in a file name, it will be considered relative to the current direct
 In all other situations, the conditional_rootdir is ignored, and the filepath is
 taken at face value.
 All outputs will be processed to ensure a full path is returned.
-
-* **Return type:**
-  [`str`](https://docs.python.org/3/builtins/stdtypes.html#str)
 
 ```pycon
 >>> ensure_fullpath('apple/sauce')
@@ -195,14 +192,17 @@ that doesn’t have slashes in it.
 '/root/dir/apple'
 ```
 
+* **Return type:**
+  [`str`](https://docs.python.org/3/builtins/stdtypes.html#str)
+
 ### imbed.util.ensure_segments_mapping(segments)
 
 Ensure that the segments are in the correct format.
 
 * **Parameters:**
-  **segments** (`Union`[`Segment` ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str)), [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[`Segment` ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str))], [`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)[`SegmentKey` ([`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`KT`)), `Segment` ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str))]]) – a SegmentMapping or a Sequence of Segments
+  **segments** ([`Union`](https://docs.python.org/3/library/typing.html#typing.Union)[`Segment` ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str)), [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[`Segment` ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str))], [`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)[`SegmentKey` (`KT`), `Segment` ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str))]]) – a SegmentMapping or a Sequence of Segments
 * **Return type:**
-  [`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)[`SegmentKey` ([`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`KT`)), `Segment` ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str))]
+  [`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)[`SegmentKey` (`KT`), `Segment` ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str))]
 * **Returns:**
   a SegmentMapping
 
@@ -240,8 +240,8 @@ fields, a regular expression, or a custom matching function.).
 A dictionary
 
 * **Parameters:**
-  * **fields** ([`list`](https://docs.python.org/3/builtins/stdtypes.html#list)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`Field`, bound= [`str`](https://docs.python.org/3/builtins/stdtypes.html#str))]) – A list of fields
-  * **aliases** ([`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`Role`, bound= [`str`](https://docs.python.org/3/builtins/stdtypes.html#str)), `Union`[[`list`](https://docs.python.org/3/builtins/stdtypes.html#list)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`Field`, bound= [`str`](https://docs.python.org/3/builtins/stdtypes.html#str))], [`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`Regex`, bound= [`str`](https://docs.python.org/3/builtins/stdtypes.html#str)), [`Callable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)[[[`list`](https://docs.python.org/3/builtins/stdtypes.html#list)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`Field`, bound= [`str`](https://docs.python.org/3/builtins/stdtypes.html#str))]], [`Optional`](https://docs.python.org/3/library/typing.html#typing.Optional)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`Field`, bound= [`str`](https://docs.python.org/3/builtins/stdtypes.html#str))]]]]) – 
+  * **fields** ([`list`](https://docs.python.org/3/builtins/stdtypes.html#list)[`Field`]) – A list of fields
+  * **aliases** ([`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)[`Role`, [`Union`](https://docs.python.org/3/library/typing.html#typing.Union)[[`list`](https://docs.python.org/3/builtins/stdtypes.html#list)[`Field`], `Regex`, [`Callable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)[[[`list`](https://docs.python.org/3/builtins/stdtypes.html#list)[`Field`]], [`Optional`](https://docs.python.org/3/library/typing.html#typing.Optional)[`Field`]]]]) – 
 
     A dictionary where:
     - Keys are roles (e.g., ‘ID’, ‘Name’) we’re looking for
@@ -255,7 +255,7 @@ A dictionary
     found. Once a column is matched, it is removed
     from further matching, so it can’t be matched again.
 * **Return type:**
-  [`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`Role`, bound= [`str`](https://docs.python.org/3/builtins/stdtypes.html#str)), [`Optional`](https://docs.python.org/3/library/typing.html#typing.Optional)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`Field`, bound= [`str`](https://docs.python.org/3/builtins/stdtypes.html#str))]]
+  [`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)[`Role`, [`Optional`](https://docs.python.org/3/library/typing.html#typing.Optional)[`Field`]]
 
 Example 1: List-based aliases, regex, and custom function matching
 
@@ -299,8 +299,8 @@ The optional data_1_cols and data_2_cols are used to transform numpy matrices in
 dataframes with the given column names.
 
 * **Parameters:**
-  * **data_1** (`Union`[`ndarray`, `DataFrame`]) – The first source of data.
-  * **data_2** (`Union`[`ndarray`, `DataFrame`]) – The second source of data.
+  * **data_1** ([`Union`](https://docs.python.org/3/library/typing.html#typing.Union)[`ndarray`, `DataFrame`]) – The first source of data.
+  * **data_2** ([`Union`](https://docs.python.org/3/library/typing.html#typing.Union)[`ndarray`, `DataFrame`]) – The second source of data.
   * **merge_on** – The column to merge on, if both data_1 and data_2 are dataframes.
   * **data_1_cols** ([`list`](https://docs.python.org/3/builtins/stdtypes.html#list)[[`str`](https://docs.python.org/3/builtins/stdtypes.html#str)] | [`None`](https://docs.python.org/3/builtins/constants.html#None)) – The column names for the first source of data, if it is a numpy array.
   * **data_2_cols** ([`list`](https://docs.python.org/3/builtins/stdtypes.html#list)[[`str`](https://docs.python.org/3/builtins/stdtypes.html#str)] | [`None`](https://docs.python.org/3/builtins/constants.html#None)) – The column names for the second source of data, if it is a numpy array.
@@ -313,11 +313,11 @@ Takes a mapping of k-dimensional (kd) embeddings and returns a dict of the 2d
 umap embeddings
 
 * **Parameters:**
-  * **kd_embeddings** ([`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`KT`), [`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)[[`float`](https://docs.python.org/3/builtins/functions.html#float)]]) – a dict of kd embeddings
-  * **embeddings_func** (`Union`[[`Literal`](https://docs.python.org/3/library/typing.html#typing.Literal)[`'umap'`, `'ncvis'`, `'tsne'`, `'pca'`], [`Callable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)[[[`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)[[`float`](https://docs.python.org/3/builtins/functions.html#float)]]], [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`tuple`](https://docs.python.org/3/builtins/stdtypes.html#tuple)[[`float`](https://docs.python.org/3/builtins/functions.html#float), [`float`](https://docs.python.org/3/builtins/functions.html#float)]]]]) – the function to compute the embeddings
+  * **kd_embeddings** ([`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)[`KT`, [`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)[[`float`](https://docs.python.org/3/builtins/functions.html#float)]]) – a dict of kd embeddings
+  * **embeddings_func** ([`Union`](https://docs.python.org/3/library/typing.html#typing.Union)[[`Literal`](https://docs.python.org/3/library/typing.html#typing.Literal)[`'umap'`, `'ncvis'`, `'tsne'`, `'pca'`], [`Callable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)[[[`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)[[`float`](https://docs.python.org/3/builtins/functions.html#float)]]], [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`tuple`](https://docs.python.org/3/builtins/stdtypes.html#tuple)[[`float`](https://docs.python.org/3/builtins/functions.html#float), [`float`](https://docs.python.org/3/builtins/functions.html#float)]]]]) – the function to compute the embeddings
   * **preprocessors** – a list of preprocessors to apply to the embeddings
 * **Return type:**
-  [`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`KT`), [`tuple`](https://docs.python.org/3/builtins/stdtypes.html#tuple)[[`float`](https://docs.python.org/3/builtins/functions.html#float), [`float`](https://docs.python.org/3/builtins/functions.html#float)]]
+  [`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)[`KT`, [`tuple`](https://docs.python.org/3/builtins/stdtypes.html#tuple)[[`float`](https://docs.python.org/3/builtins/functions.html#float), [`float`](https://docs.python.org/3/builtins/functions.html#float)]]
 * **Returns:**
   a dict of the 2d umap embeddings
 
@@ -377,7 +377,7 @@ of the 2d embeddings
 If key_col is not None, the keys are added as a column in the dataframe.
 
 * **Parameters:**
-  * **planar_embeddings_kv** ([`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`KT`), [`tuple`](https://docs.python.org/3/builtins/stdtypes.html#tuple)[[`float`](https://docs.python.org/3/builtins/functions.html#float), [`float`](https://docs.python.org/3/builtins/functions.html#float)]]) – a dict of planar embeddings
+  * **planar_embeddings_kv** ([`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)[`KT`, [`tuple`](https://docs.python.org/3/builtins/stdtypes.html#tuple)[[`float`](https://docs.python.org/3/builtins/functions.html#float), [`float`](https://docs.python.org/3/builtins/functions.html#float)]]) – a dict of planar embeddings
   * **x_col** ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str)) – the name of the x column
   * **y_col** ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str)) – the name of the y column
   * **index_name** ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str) | [`None`](https://docs.python.org/3/builtins/constants.html#None)) – the name of the index
@@ -427,7 +427,7 @@ of the 2d embeddings
 If key_col is not None, the keys are added as a column in the dataframe.
 
 * **Parameters:**
-  * **planar_embeddings_kv** ([`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`KT`), [`tuple`](https://docs.python.org/3/builtins/stdtypes.html#tuple)[[`float`](https://docs.python.org/3/builtins/functions.html#float), [`float`](https://docs.python.org/3/builtins/functions.html#float)]]) – a dict of planar embeddings
+  * **planar_embeddings_kv** ([`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)[`KT`, [`tuple`](https://docs.python.org/3/builtins/stdtypes.html#tuple)[[`float`](https://docs.python.org/3/builtins/functions.html#float), [`float`](https://docs.python.org/3/builtins/functions.html#float)]]) – a dict of planar embeddings
   * **x_col** ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str)) – the name of the x column
   * **y_col** ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str)) – the name of the y column
   * **index_name** ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str) | [`None`](https://docs.python.org/3/builtins/constants.html#None)) – the name of the index
@@ -454,13 +454,13 @@ Takes a mapping of k-dimensional (kd) embeddings and returns a dict of the 2d
 umap embeddings
 
 * **Parameters:**
-  * **kd_embeddings** – a dict of kd embeddings
-  * **embeddings_func** – the function to compute the embeddings
+  * **kd_embeddings** ([`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)[`KT`, [`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)[[`float`](https://docs.python.org/3/builtins/functions.html#float)]]) – a dict of kd embeddings
+  * **embeddings_func** ([`Union`](https://docs.python.org/3/library/typing.html#typing.Union)[[`Literal`](https://docs.python.org/3/library/typing.html#typing.Literal)[`'umap'`, `'ncvis'`, `'tsne'`, `'pca'`], [`Callable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)[[[`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)[[`float`](https://docs.python.org/3/builtins/functions.html#float)]]], [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`tuple`](https://docs.python.org/3/builtins/stdtypes.html#tuple)[[`float`](https://docs.python.org/3/builtins/functions.html#float), [`float`](https://docs.python.org/3/builtins/functions.html#float)]]]]) – the function to compute the embeddings
   * **preprocessors** – a list of preprocessors to apply to the embeddings
+* **Return type:**
+  [`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)[`KT`, [`tuple`](https://docs.python.org/3/builtins/stdtypes.html#tuple)[[`float`](https://docs.python.org/3/builtins/functions.html#float), [`float`](https://docs.python.org/3/builtins/functions.html#float)]]
 * **Returns:**
   a dict of the 2d umap embeddings
-* **Return type:**
-  [*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict)[KT, [*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)[[*float*](https://docs.python.org/3/builtins/functions.html#float), [*float*](https://docs.python.org/3/builtins/functions.html#float)]]
 
 ### Example
 

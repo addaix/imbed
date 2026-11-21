@@ -5,41 +5,39 @@ orphan: true
 
 # About this build
 
-This documentation was built on **2026-10-13 15:37 UTC** from commit <a href="https://github.com/thorwhalen/imbed/commit/658ef872b5b731582e1944b21cd93caa2ae44567"><code>658ef87</code></a> on branch <code>main</code>, for **imbed 0.0.27** (from <code>pyproject.toml</code>).
+This documentation was built on **2026-11-21 15:08 UTC** from commit <a href="https://github.com/addaix/imbed/commit/1cbd20e156761385a2227da024bc047ec406eea9"><code>1cbd20e</code></a> on branch <code>main</code>, for **imbed 0.0.28** (from <code>pyproject.toml</code>).
 
-:::{warning}
-The documentation and the package may be misaligned:
-
-- The documented version (0.0.27) is behind the latest release on PyPI (0.0.28): `pip install imbed` gives newer code than these docs describe.
+:::{note}
+Nothing suggests a mismatch: the tree was clean at the commit above, and the documented version is the one on PyPI.
 :::
 
 ## Source
 
 | | |
 |---|---|
-| Commit | <a href="https://github.com/thorwhalen/imbed/commit/658ef872b5b731582e1944b21cd93caa2ae44567"><code>658ef872b5b731582e1944b21cd93caa2ae44567</code></a> |
+| Commit | <a href="https://github.com/addaix/imbed/commit/1cbd20e156761385a2227da024bc047ec406eea9"><code>1cbd20e156761385a2227da024bc047ec406eea9</code></a> |
 | Branch | <code>main</code> |
 | Tags at this commit | none |
 | Working tree | clean |
-| Remote | <code>https://github.com/thorwhalen/imbed</code> |
+| Remote | <code>https://github.com/addaix/imbed</code> |
 
 ## Continuous integration
 
 | | |
 |---|---|
-| Repository | <code>thorwhalen/imbed</code> |
-| Run | <a href="https://github.com/thorwhalen/imbed/actions/runs/38423189863">38423189863</a> |
+| Repository | <code>addaix/imbed</code> |
+| Run | <a href="https://github.com/addaix/imbed/actions/runs/44917280889">44917280889</a> |
 | Ref | <code>refs/heads/main</code> |
-| Event commit | <code>658ef872b5b731582e1944b21cd93caa2ae44567</code> (in the history of the built commit) |
+| Event commit | <code>1cbd20e156761385a2227da024bc047ec406eea9</code> (in the history of the built commit) |
 
 ## Tools
 
 | | |
 |---|---|
-| epythet | 0.2.16 |
-| Sphinx | 9.1.0 |
+| epythet | 0.2.22 |
+| Sphinx | 9.1.1 |
 | docutils | 0.22.4 |
-| Python | 3.12.15 |
+| Python | 3.12.16 |
 
 ## Configuration as resolved
 
@@ -55,14 +53,14 @@ The documentation and the package may be misaligned:
 
 ## Package on PyPI
 
-Latest release: <a href="https://pypi.org/project/imbed/0.0.28/">0.0.28</a>, newer than the documented version (0.0.27).
+Latest release: <a href="https://pypi.org/project/imbed/0.0.28/">0.0.28</a>, the same as the documented version.
 
 ## Reproduce
 
 ```bash
-git clone https://github.com/thorwhalen/imbed && cd imbed
-git checkout 658ef872b5b731582e1944b21cd93caa2ae44567
-pip install "epythet==0.2.16"
+git clone https://github.com/addaix/imbed && cd imbed
+git checkout 1cbd20e156761385a2227da024bc047ec406eea9
+pip install "epythet==0.2.22"
 epythet quickstart . --ignore tests/ scrap/ examples/
 ```
 

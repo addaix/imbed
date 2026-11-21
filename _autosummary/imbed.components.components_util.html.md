@@ -52,7 +52,7 @@ Decorator to register a component.
   * **key** ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str)) – Registration key (defaults to function/class name)
   * **\*\*config** – Additional configuration passed to factory if present
 * **Return type:**
-  [`Callable`](https://docs.python.org/3/library/typing.html#typing.Callable)[[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`T`)], [`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`T`)]
+  [`Callable`](https://docs.python.org/3/library/typing.html#typing.Callable)[[`T`], `T`]
 * **Returns:**
   Decorator function that registers and returns the component
 

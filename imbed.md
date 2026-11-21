@@ -1,4 +1,4 @@
-> built 2026-10-13 15:37 UTC from 658ef87 (main) · imbed 0.0.27. Details: build_info.json
+> built 2026-11-21 15:08 UTC from 1cbd20e (main) · imbed 0.0.28. Details: build_info.json
 
 # index.html.md
 
@@ -505,7 +505,7 @@ The returned object exposes:
     distance approximates cosine distance — appropriate for semantic
     embeddings.
   * **\*\*kmeans_kwargs** – Passed to `sklearn.cluster.KMeans`.
-* **Return type:**
+* **Returns:**
   `_FittedKMeans` instance.
 
 ### imbed.components.clusterization.get_clusterer(name)
@@ -771,7 +771,7 @@ Decorator to register a component.
   * **key** ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str)) – Registration key (defaults to function/class name)
   * **\*\*config** – Additional configuration passed to factory if present
 * **Return type:**
-  [`Callable`](https://docs.python.org/3/library/typing.html#typing.Callable)[[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`T`)], [`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`T`)]
+  [`Callable`](https://docs.python.org/3/library/typing.html#typing.Callable)[[`T`], `T`]
 * **Returns:**
   Decorator function that registers and returns the component
 
@@ -1289,13 +1289,13 @@ Calculate simple (pseudo-)semantic features of the text.
 This is meant to be used as a placeholder vectorizer (a.k.a. embedding function) for
 text segments, for testing mainly.
 
-* **Return type:**
-  [`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)[[`float`](https://docs.python.org/3/builtins/functions.html#float)]
-
 ```pycon
 >>> three_text_features("Hello, world!")
 (2, 12, 2)
 ```
+
+* **Return type:**
+  [`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)[[`float`](https://docs.python.org/3/builtins/functions.html#float)]
 
 
 # _autosummary/imbed.data_prep.html.md
@@ -1523,7 +1523,7 @@ If the key is a dictionary with one item, it will return a partial function:
 5
 ```
 
-### *class* imbed.imbed_project.Project(segments=<factory>, embeddings=<factory>, planar_coords=<factory>, cluster_indices=<factory>, embedders=<factory>, planarizers=<factory>, clusterers=<factory>, default_embedder='default', \_active_computations=<factory>, \_invalidation_cascade=True, \_auto_compute_embeddings=True, \_async_embeddings=False, \_async_base_path=None, \_id=None, \_async_backend=None)
+### *class* imbed.imbed_project.Project(segments=dict(), embeddings=dict(), planar_coords=dict(), cluster_indices=dict(), embedders=<factory>, planarizers=<factory>, clusterers=<factory>, default_embedder='default', \_active_computations=dict(), \_invalidation_cascade=True, \_auto_compute_embeddings=True, \_async_embeddings=False, \_async_base_path=None, \_id=None, \_async_backend=None)
 
 Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
 
@@ -1538,9 +1538,9 @@ and asynchronous embedding computation via the au framework.
 Add segments and trigger embedding computation.
 
 * **Parameters:**
-  **segments** ([`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)[`SegmentKey` ([`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`KT`)), `Segment` ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str))]) – Mapping of segment keys to segment text
+  **segments** ([`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)[`SegmentKey` (`KT`), `Segment` ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str))]) – Mapping of segment keys to segment text
 * **Return type:**
-  [`list`](https://docs.python.org/3/builtins/stdtypes.html#list)[`SegmentKey` ([`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`KT`))]
+  [`list`](https://docs.python.org/3/builtins/stdtypes.html#list)[`SegmentKey` (`KT`)]
 * **Returns:**
   List of segment keys that were added
 
@@ -1719,7 +1719,7 @@ Clear all items in a store
 * **Return type:**
   [`None`](https://docs.python.org/3/builtins/constants.html#None)
 
-### imbed.imbed_project.get_local_mall(project_id='default_project', \*, mall_keys=('misc', 'segments', 'embeddings', 'clusters', 'planar_embeddings', 'statuses', 'cluster_labels'), default_store_maker=functools.partial(<function mk_blob_store_for_path>, path_to_bytes_store=<class 'dol.filesys.Files'>, base_store_wrap=functools.partial(<function extension_based_wrap>, extension_to_decoder={'csv': functools.partial(<function read_from_bytes>, functools.partial(<function read_csv>, index_col=None), buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'txt': <method 'decode' of 'bytes' objects>, 'tsv': functools.partial(<function read_from_bytes>, functools.partial(<function read_csv>, sep='\\\\t', index_col=None), buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'parquet': functools.partial(<function read_from_bytes>, <function read_parquet>, buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'json': <function loads>, 'html': functools.partial(<function read_from_bytes>, functools.partial(<function read_html>, index_col=0), buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'p': functools.partial(<function read_from_bytes>, <built-in function load>, buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'pickle': functools.partial(<function read_from_bytes>, <built-in function load>, buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'pkl': <built-in function loads>, 'xml': functools.partial(<function read_from_bytes>, <function read_xml>, buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'sql': functools.partial(<function read_from_bytes>, <function read_sql>, buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'sqlite': functools.partial(<function read_from_bytes>, <function read_sql>, buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'feather': functools.partial(<function read_from_bytes>, <function read_feather>, buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'stata': functools.partial(<function read_from_bytes>, functools.partial(<function read_stata>, index_col=0), buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'dta': functools.partial(<function read_from_bytes>, functools.partial(<function read_stata>, index_col=0), buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'sas': functools.partial(<function read_from_bytes>, <function read_sas>, buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'h5': functools.partial(<function read_from_bytes>, <function read_hdf>, buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'hdf5': functools.partial(<function read_from_bytes>, <function read_hdf>, buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'xls': functools.partial(<function read_from_bytes>, functools.partial(<function read_excel>, index_col=0), buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'xlsx': functools.partial(<function read_from_bytes>, functools.partial(<function read_excel>, index_col=0), buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'orc': functools.partial(<function read_from_bytes>, <function read_orc>, buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'sav': functools.partial(<function read_from_bytes>, <function read_spss>, buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'mat': functools.partial(<function read_from_bytes>, <function mat_bytes_to_dataframe>, buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'arrow': functools.partial(<function read_from_bytes>, <function arrow_bytes_to_dataframe>, buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), '': <function loads>, 'dill': <function loads>}, extension_to_encoder={'csv': functools.partial(<function written_bytes>, functools.partial(<function NDFrame.to_csv>, index=False), obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), 'txt': <method 'encode' of 'str' objects>, 'tsv': functools.partial(<function written_bytes>, functools.partial(<function NDFrame.to_csv>, index=False, sep='\\\\t', escapechar='\\\\\\\\', quotechar='"'), obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), 'json': <dol.util.Pipe object>, 'html': functools.partial(<function written_bytes>, functools.partial(<function DataFrame.to_html>, index=True), obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), 'p': functools.partial(<function written_bytes>, <function NDFrame.to_pickle>, obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), 'pickle': functools.partial(<function written_bytes>, <function NDFrame.to_pickle>, obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), 'pkl': <built-in function dumps>, 'npy': functools.partial(<function written_bytes>, <function save>, obj_arg_position_in_writer=1, io_buffer_cls=<class '_io.BytesIO'>), 'zip': <function save_df_to_zipped_tsv>, 'h5': functools.partial(<function written_bytes>, <function NDFrame.to_hdf>, obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), 'hdf5': functools.partial(<function written_bytes>, <function NDFrame.to_hdf>, obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), 'stata': functools.partial(<function written_bytes>, functools.partial(<function DataFrame.to_stata>, write_index=True), obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), 'dta': functools.partial(<function written_bytes>, functools.partial(<function DataFrame.to_stata>, write_index=True), obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), 'sql': functools.partial(<function written_bytes>, <function NDFrame.to_sql>, obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), 'sqlite': functools.partial(<function written_bytes>, <function NDFrame.to_sql>, obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), 'gbq': functools.partial(<function written_bytes>, <function \_to_gbq_unavailable>, obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), 'xls': functools.partial(<function written_bytes>, functools.partial(<function NDFrame.to_excel>, index=True), obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), 'xlsx': functools.partial(<function written_bytes>, functools.partial(<function NDFrame.to_excel>, index=True), obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), 'xml': functools.partial(<function written_bytes>, <function DataFrame.to_xml>, obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), 'parquet': functools.partial(<function written_bytes>, <function cast_to_parquet>, obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), 'feather': functools.partial(<function written_bytes>, <function DataFrame.to_feather>, obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), 'orc': functools.partial(<function written_bytes>, <function DataFrame.to_orc>, obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), 'mat': functools.partial(<function written_bytes>, <function dataframe_to_mat_bytes>, obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), 'arrow': functools.partial(<function written_bytes>, <function dataframe_to_arrow_bytes>, obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), '': <function dumps>, 'dill': <function dumps>}), filename_suffix='.dill'))
+### imbed.imbed_project.get_local_mall(project_id='default_project', \*, mall_keys=('misc', 'segments', 'embeddings', 'clusters', 'planar_embeddings', 'statuses', 'cluster_labels'), default_store_maker=functools.partial(<function mk_blob_store_for_path>, path_to_bytes_store=<class 'dol.filesys.Files'>, base_store_wrap=functools.partial(<function extension_based_wrap>, extension_to_decoder={'csv': functools.partial(<function read_from_bytes>, functools.partial(<function read_csv>, index_col=None), buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'txt': <method 'decode' of 'bytes' objects>, 'tsv': functools.partial(<function read_from_bytes>, functools.partial(<function read_csv>, sep='\\t', index_col=None), buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'parquet': functools.partial(<function read_from_bytes>, <function read_parquet>, buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'json': <function loads>, 'html': functools.partial(<function read_from_bytes>, functools.partial(<function read_html>, index_col=0), buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'p': functools.partial(<function read_from_bytes>, <built-in function load>, buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'pickle': functools.partial(<function read_from_bytes>, <built-in function load>, buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'pkl': <built-in function loads>, 'xml': functools.partial(<function read_from_bytes>, <function read_xml>, buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'sql': functools.partial(<function read_from_bytes>, <function read_sql>, buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'sqlite': functools.partial(<function read_from_bytes>, <function read_sql>, buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'feather': functools.partial(<function read_from_bytes>, <function read_feather>, buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'stata': functools.partial(<function read_from_bytes>, functools.partial(<function read_stata>, index_col=0), buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'dta': functools.partial(<function read_from_bytes>, functools.partial(<function read_stata>, index_col=0), buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'sas': functools.partial(<function read_from_bytes>, <function read_sas>, buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'h5': functools.partial(<function read_from_bytes>, <function read_hdf>, buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'hdf5': functools.partial(<function read_from_bytes>, <function read_hdf>, buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'xls': functools.partial(<function read_from_bytes>, functools.partial(<function read_excel>, index_col=0), buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'xlsx': functools.partial(<function read_from_bytes>, functools.partial(<function read_excel>, index_col=0), buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'orc': functools.partial(<function read_from_bytes>, <function read_orc>, buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'sav': functools.partial(<function read_from_bytes>, <function read_spss>, buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'mat': functools.partial(<function read_from_bytes>, <function mat_bytes_to_dataframe>, buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), 'arrow': functools.partial(<function read_from_bytes>, <function arrow_bytes_to_dataframe>, buffer_arg_position=0, buffer_arg_name=None, io_buffer_cls=<class '_io.BytesIO'>), '': <function loads>, 'dill': <function loads>}, extension_to_encoder={'csv': functools.partial(<function written_bytes>, functools.partial(<function NDFrame.to_csv>, index=False), obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), 'txt': <method 'encode' of 'str' objects>, 'tsv': functools.partial(<function written_bytes>, functools.partial(<function NDFrame.to_csv>, index=False, sep='\\t', escapechar='\\\\', quotechar='"'), obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), 'json': <dol.util.Pipe object>, 'html': functools.partial(<function written_bytes>, functools.partial(<function DataFrame.to_html>, index=True), obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), 'p': functools.partial(<function written_bytes>, <function NDFrame.to_pickle>, obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), 'pickle': functools.partial(<function written_bytes>, <function NDFrame.to_pickle>, obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), 'pkl': <built-in function dumps>, 'npy': functools.partial(<function written_bytes>, <function save>, obj_arg_position_in_writer=1, io_buffer_cls=<class '_io.BytesIO'>), 'zip': <function save_df_to_zipped_tsv>, 'h5': functools.partial(<function written_bytes>, <function NDFrame.to_hdf>, obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), 'hdf5': functools.partial(<function written_bytes>, <function NDFrame.to_hdf>, obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), 'stata': functools.partial(<function written_bytes>, functools.partial(<function DataFrame.to_stata>, write_index=True), obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), 'dta': functools.partial(<function written_bytes>, functools.partial(<function DataFrame.to_stata>, write_index=True), obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), 'sql': functools.partial(<function written_bytes>, <function NDFrame.to_sql>, obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), 'sqlite': functools.partial(<function written_bytes>, <function NDFrame.to_sql>, obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), 'gbq': functools.partial(<function written_bytes>, <function \_to_gbq_unavailable>, obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), 'xls': functools.partial(<function written_bytes>, functools.partial(<function NDFrame.to_excel>, index=True), obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), 'xlsx': functools.partial(<function written_bytes>, functools.partial(<function NDFrame.to_excel>, index=True), obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), 'xml': functools.partial(<function written_bytes>, <function DataFrame.to_xml>, obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), 'parquet': functools.partial(<function written_bytes>, <function cast_to_parquet>, obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), 'feather': functools.partial(<function written_bytes>, <function DataFrame.to_feather>, obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), 'orc': functools.partial(<function written_bytes>, <function DataFrame.to_orc>, obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), 'mat': functools.partial(<function written_bytes>, <function dataframe_to_mat_bytes>, obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), 'arrow': functools.partial(<function written_bytes>, <function dataframe_to_arrow_bytes>, obj_arg_position_in_writer=0, io_buffer_cls=<class '_io.BytesIO'>), '': <function dumps>, 'dill': <function dumps>}), filename_suffix='.dill'))
 
 Get the user stores for the package.
 
@@ -1831,17 +1831,17 @@ Yield chunks of rows from a DataFrame.
 The yielded chunks are lists of (index, row) tuples.
 
 * **Return type:**
-  [*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[*ChunkBasedObj*]
+  [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[`ChunkBasedObj`]
 
 ### imbed.segmentation_util.chunk_mapping(mapping, chunker=None)
 
 Use the chunker to chunk the items of mapping, yielding sub-mappings
 
 * **Parameters:**
-  * **chunker** (`Union`[[`Callable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)[[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`IterableToChunk`, bound= [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`T`)])], [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`Chunk`, bound= [`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`T`)])]], [`int`](https://docs.python.org/3/builtins/functions.html#int)]) – a chunker function
-  * **mapping** ([`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`KT`), [`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`T`)]) – a mapping of items
+  * **chunker** ([`Union`](https://docs.python.org/3/library/typing.html#typing.Union)[[`Callable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)[[`IterableToChunk`], [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[`Chunk`]], [`int`](https://docs.python.org/3/builtins/functions.html#int)]) – a chunker function
+  * **mapping** ([`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)[`KT`, `T`]) – a mapping of items
 * **Return type:**
-  [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`KT`), [`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`T`)]]
+  [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)[`KT`, `T`]]
 * **Returns:**
   an iterator of sub-mappings in the form of dictionaries
 
@@ -1864,7 +1864,7 @@ The start_at, stop_at act like slices indices for a list: start_at is included
 and stop_at is excluded
 
 * **Parameters:**
-  * **it** ([`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`T`)]) – iterator of elements of any type
+  * **it** ([`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[`T`]) – iterator of elements of any type
   * **chk_size** ([`int`](https://docs.python.org/3/builtins/functions.html#int)) – length of the chunks
   * **chk_step** ([`int`](https://docs.python.org/3/builtins/functions.html#int) | [`None`](https://docs.python.org/3/builtins/constants.html#None)) – step between chunks
   * **start_at** ([`int`](https://docs.python.org/3/builtins/functions.html#int) | [`None`](https://docs.python.org/3/builtins/constants.html#None)) – index of the first term of the iterator at which we begin building
@@ -1875,7 +1875,7 @@ and stop_at is excluded
     if set to true, any chunks with minimum index value no more than stop_at are
     returned but they contain term with index no more than stop_at
 * **Return type:**
-  [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`T`)]]
+  [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)[`T`]]
 * **Returns:**
   an iterator of the chunks
 
@@ -1920,7 +1920,7 @@ but these do not need to be of fixed size.
 The output will be though.
 
 * **Return type:**
-  [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`Chunk`, bound= [`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`T`)])]
+  [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[`Chunk`]
 
 ### imbed.segmentation_util.wrapped_chunker(src, chunker, \*, ingress=<function identity>, egress=<function identity>)
 
@@ -1928,12 +1928,12 @@ A function to extend chunking functionality to any source of iterables,
 with the ability to wrap the chunks in a function before yielding them.
 
 * **Parameters:**
-  * **src** ([`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`IterableSrc`, bound= [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`T`)])) – an iterable of items
-  * **chunker** (`Union`[[`Callable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)[[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`IterableToChunk`, bound= [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`T`)])], [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`Chunk`, bound= [`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`T`)])]], [`int`](https://docs.python.org/3/builtins/functions.html#int)]) – a chunker function or an integer
-  * **ingress** ([`Callable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)[[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`IterableSrc`, bound= [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`T`)])], [`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`IterableToChunk`, bound= [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`T`)])]) – a function to wrap the input iterable
-  * **egress** ([`Callable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)[[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`Chunk`, bound= [`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`T`)])], [`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`ChunkBasedObj`)]) – a function to wrap the output chunks
+  * **src** (`IterableSrc`) – an iterable of items
+  * **chunker** ([`Union`](https://docs.python.org/3/library/typing.html#typing.Union)[[`Callable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)[[`IterableToChunk`], [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[`Chunk`]], [`int`](https://docs.python.org/3/builtins/functions.html#int)]) – a chunker function or an integer
+  * **ingress** ([`Callable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)[[`IterableSrc`], `IterableToChunk`]) – a function to wrap the input iterable
+  * **egress** ([`Callable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)[[`Chunk`], `ChunkBasedObj`]) – a function to wrap the output chunks
 * **Return type:**
-  [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`ChunkBasedObj`)]
+  [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[`ChunkBasedObj`]
 * **Returns:**
   an iterator of chunk-based objects
 
@@ -1986,7 +1986,7 @@ Tools around imbeddings tasks
 |------------------------------------------------------------------------------|------------------------------------------------------------------------------------|
 | `EmbeddingBatchManager`(text_segments, \*[, ...])                            |                                                                                    |
 
-### *class* imbed.tools.ClusterLabeler(, truncate_segment_at_index=100, n_samples=99, context=' ', n_words=4, cluster_idx_col='cluster_idx', get_row_segments='segment', max_unique_clusters=40, prompt='\\\\nI want a title for the data below.\\\\nHave the title be no more than {n_words} words long.\\\\nI will give you the context of the data. \\\\nYou should not include this context in the title. \\\\nReaders of the title will assume the context, so only particulars of \\\\nthe data should be included in the title.\\\\nThe data represents a sample of the text segments of a particular topic.\\\\nYou should infer what the topic is and the title should be a very short \\\\ndescription of how that topic my differ from other topics of the same context.\\\\nAgain, your title should reflect the particulars of the text segments \\\\nwithin the given context, not the context itself.\\\\n\\\\nDo not surround the title with quotes or brackets or such.\\\\n\\\\nThis is the context of the data: {context}.\\\\n                \\\\nThe data:\\\\n                \\\\n{data}\\\\n')
+### *class* imbed.tools.ClusterLabeler(, truncate_segment_at_index=100, n_samples=99, context=' ', n_words=4, cluster_idx_col='cluster_idx', get_row_segments='segment', max_unique_clusters=40, prompt='\\nI want a title for the data below.\\nHave the title be no more than {n_words} words long.\\nI will give you the context of the data. \\nYou should not include this context in the title. \\nReaders of the title will assume the context, so only particulars of \\nthe data should be included in the title.\\nThe data represents a sample of the text segments of a particular topic.\\nYou should infer what the topic is and the title should be a very short \\ndescription of how that topic my differ from other topics of the same context.\\nAgain, your title should reflect the particulars of the text segments \\nwithin the given context, not the context itself.\\n\\nDo not surround the title with quotes or brackets or such.\\n\\nThis is the context of the data: {context}.\\n                \\nThe data:\\n                \\n{data}\\n')
 
 Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
 
@@ -2019,7 +2019,7 @@ Sets up the ProcessingManager with the necessary functions and parameters.
 * **Return type:**
   `ProcessingManager`
 
-### imbed.tools.cluster_labeler(df, , truncate_segment_at_index=100, n_samples=99, context=' ', n_words=4, cluster_idx_col='cluster_idx', get_row_segments='segment', max_unique_clusters=40, prompt='\\\\nI want a title for the data below.\\\\nHave the title be no more than {n_words} words long.\\\\nI will give you the context of the data. \\\\nYou should not include this context in the title. \\\\nReaders of the title will assume the context, so only particulars of \\\\nthe data should be included in the title.\\\\nThe data represents a sample of the text segments of a particular topic.\\\\nYou should infer what the topic is and the title should be a very short \\\\ndescription of how that topic my differ from other topics of the same context.\\\\nAgain, your title should reflect the particulars of the text segments \\\\nwithin the given context, not the context itself.\\\\n\\\\nDo not surround the title with quotes or brackets or such.\\\\n\\\\nThis is the context of the data: {context}.\\\\n                \\\\nThe data:\\\\n                \\\\n{data}\\\\n')
+### imbed.tools.cluster_labeler(df, , truncate_segment_at_index=100, n_samples=99, context=' ', n_words=4, cluster_idx_col='cluster_idx', get_row_segments='segment', max_unique_clusters=40, prompt='\\nI want a title for the data below.\\nHave the title be no more than {n_words} words long.\\nI will give you the context of the data. \\nYou should not include this context in the title. \\nReaders of the title will assume the context, so only particulars of \\nthe data should be included in the title.\\nThe data represents a sample of the text segments of a particular topic.\\nYou should infer what the topic is and the title should be a very short \\ndescription of how that topic my differ from other topics of the same context.\\nAgain, your title should reflect the particulars of the text segments \\nwithin the given context, not the context itself.\\n\\nDo not surround the title with quotes or brackets or such.\\n\\nThis is the context of the data: {context}.\\n                \\nThe data:\\n                \\n{data}\\n')
 
 A function that labels clusters give a DataFrame of text segments & cluster indices
 
@@ -2029,7 +2029,7 @@ Given a dictionary of {id: text_segment, …}, uploads the data, submits it for 
 embedding computation, and retrieves the result once complete.
 
 * **Parameters:**
-  * **text_segments** (`Union`[`Segment` ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str)), [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[`Segment` ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str))], [`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)[`SegmentKey` ([`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`KT`)), `Segment` ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str))]]) – A dictionary where keys are unique identifiers and values are text segments.
+  * **text_segments** ([`Union`](https://docs.python.org/3/library/typing.html#typing.Union)[`Segment` ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str)), [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[`Segment` ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str))], [`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)[`SegmentKey` (`KT`), `Segment` ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str))]]) – A dictionary where keys are unique identifiers and values are text segments.
   * **poll_interval** ([`float`](https://docs.python.org/3/builtins/functions.html#float)) – Time interval (in seconds) to wait between polling checks for batch completion.
 * **Returns:**
   A dictionary with {id: embedding_vector, …} for each input text segment.
@@ -2105,11 +2105,11 @@ Utils for imbed package.
 Calls a function, awaiting it if it’s asynchronous, and running it in a thread if it’s synchronous.
 
 * **Parameters:**
-  * **func** ([`Callable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)[[[`ParamSpec`](https://docs.python.org/3/library/typing.html#typing.ParamSpec)(`P`, bound= [`None`](https://docs.python.org/3/builtins/constants.html#None))], [`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`R`)]) – The function to call.
-  * **\*args** ([`ParamSpecArgs`](https://docs.python.org/3/library/typing.html#typing.ParamSpecArgs)) – Positional arguments to pass to the function.
-  * **\*\*kwargs** ([`ParamSpecKwargs`](https://docs.python.org/3/library/typing.html#typing.ParamSpecKwargs)) – Keyword arguments to pass to the function.
+  * **func** ([`Callable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)[`P`, `R`]) – The function to call.
+  * **\*args** (`P.args`) – Positional arguments to pass to the function.
+  * **\*\*kwargs** (`P.kwargs`) – Keyword arguments to pass to the function.
 * **Return type:**
-  [`Coroutine`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Coroutine)[[`Any`](https://docs.python.org/3/library/typing.html#typing.Any), [`Any`](https://docs.python.org/3/library/typing.html#typing.Any), [`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`R`)]
+  [`Coroutine`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Coroutine)[[`Any`](https://docs.python.org/3/library/typing.html#typing.Any), [`Any`](https://docs.python.org/3/library/typing.html#typing.Any), `R`]
 * **Returns:**
   The result of the function call.
 
@@ -2221,9 +2221,9 @@ array([[0.   , 1.   , 0.707],
 Ensure that the embeddings are in the correct format.
 
 * **Parameters:**
-  **embeddings** ([`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`KT`), [`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)[[`float`](https://docs.python.org/3/builtins/functions.html#float)]]) – a dict of embeddings
+  **embeddings** ([`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)[`KT`, [`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)[[`float`](https://docs.python.org/3/builtins/functions.html#float)]]) – a dict of embeddings
 * **Return type:**
-  [`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`KT`), [`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)[[`float`](https://docs.python.org/3/builtins/functions.html#float)]]
+  [`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)[`KT`, [`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)[[`float`](https://docs.python.org/3/builtins/functions.html#float)]]
 * **Returns:**
   a dict of embeddings
 
@@ -2235,9 +2235,6 @@ If you pass in a file name, it will be considered relative to the current direct
 In all other situations, the conditional_rootdir is ignored, and the filepath is
 taken at face value.
 All outputs will be processed to ensure a full path is returned.
-
-* **Return type:**
-  [`str`](https://docs.python.org/3/builtins/stdtypes.html#str)
 
 ```pycon
 >>> ensure_fullpath('apple/sauce')
@@ -2257,14 +2254,17 @@ that doesn’t have slashes in it.
 '/root/dir/apple'
 ```
 
+* **Return type:**
+  [`str`](https://docs.python.org/3/builtins/stdtypes.html#str)
+
 ### imbed.util.ensure_segments_mapping(segments)
 
 Ensure that the segments are in the correct format.
 
 * **Parameters:**
-  **segments** (`Union`[`Segment` ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str)), [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[`Segment` ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str))], [`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)[`SegmentKey` ([`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`KT`)), `Segment` ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str))]]) – a SegmentMapping or a Sequence of Segments
+  **segments** ([`Union`](https://docs.python.org/3/library/typing.html#typing.Union)[`Segment` ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str)), [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[`Segment` ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str))], [`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)[`SegmentKey` (`KT`), `Segment` ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str))]]) – a SegmentMapping or a Sequence of Segments
 * **Return type:**
-  [`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)[`SegmentKey` ([`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`KT`)), `Segment` ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str))]
+  [`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)[`SegmentKey` (`KT`), `Segment` ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str))]
 * **Returns:**
   a SegmentMapping
 
@@ -2302,8 +2302,8 @@ fields, a regular expression, or a custom matching function.).
 A dictionary
 
 * **Parameters:**
-  * **fields** ([`list`](https://docs.python.org/3/builtins/stdtypes.html#list)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`Field`, bound= [`str`](https://docs.python.org/3/builtins/stdtypes.html#str))]) – A list of fields
-  * **aliases** ([`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`Role`, bound= [`str`](https://docs.python.org/3/builtins/stdtypes.html#str)), `Union`[[`list`](https://docs.python.org/3/builtins/stdtypes.html#list)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`Field`, bound= [`str`](https://docs.python.org/3/builtins/stdtypes.html#str))], [`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`Regex`, bound= [`str`](https://docs.python.org/3/builtins/stdtypes.html#str)), [`Callable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)[[[`list`](https://docs.python.org/3/builtins/stdtypes.html#list)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`Field`, bound= [`str`](https://docs.python.org/3/builtins/stdtypes.html#str))]], [`Optional`](https://docs.python.org/3/library/typing.html#typing.Optional)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`Field`, bound= [`str`](https://docs.python.org/3/builtins/stdtypes.html#str))]]]]) – 
+  * **fields** ([`list`](https://docs.python.org/3/builtins/stdtypes.html#list)[`Field`]) – A list of fields
+  * **aliases** ([`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)[`Role`, [`Union`](https://docs.python.org/3/library/typing.html#typing.Union)[[`list`](https://docs.python.org/3/builtins/stdtypes.html#list)[`Field`], `Regex`, [`Callable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)[[[`list`](https://docs.python.org/3/builtins/stdtypes.html#list)[`Field`]], [`Optional`](https://docs.python.org/3/library/typing.html#typing.Optional)[`Field`]]]]) – 
 
     A dictionary where:
     - Keys are roles (e.g., ‘ID’, ‘Name’) we’re looking for
@@ -2317,7 +2317,7 @@ A dictionary
     found. Once a column is matched, it is removed
     from further matching, so it can’t be matched again.
 * **Return type:**
-  [`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`Role`, bound= [`str`](https://docs.python.org/3/builtins/stdtypes.html#str)), [`Optional`](https://docs.python.org/3/library/typing.html#typing.Optional)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`Field`, bound= [`str`](https://docs.python.org/3/builtins/stdtypes.html#str))]]
+  [`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)[`Role`, [`Optional`](https://docs.python.org/3/library/typing.html#typing.Optional)[`Field`]]
 
 Example 1: List-based aliases, regex, and custom function matching
 
@@ -2361,8 +2361,8 @@ The optional data_1_cols and data_2_cols are used to transform numpy matrices in
 dataframes with the given column names.
 
 * **Parameters:**
-  * **data_1** (`Union`[`ndarray`, `DataFrame`]) – The first source of data.
-  * **data_2** (`Union`[`ndarray`, `DataFrame`]) – The second source of data.
+  * **data_1** ([`Union`](https://docs.python.org/3/library/typing.html#typing.Union)[`ndarray`, `DataFrame`]) – The first source of data.
+  * **data_2** ([`Union`](https://docs.python.org/3/library/typing.html#typing.Union)[`ndarray`, `DataFrame`]) – The second source of data.
   * **merge_on** – The column to merge on, if both data_1 and data_2 are dataframes.
   * **data_1_cols** ([`list`](https://docs.python.org/3/builtins/stdtypes.html#list)[[`str`](https://docs.python.org/3/builtins/stdtypes.html#str)] | [`None`](https://docs.python.org/3/builtins/constants.html#None)) – The column names for the first source of data, if it is a numpy array.
   * **data_2_cols** ([`list`](https://docs.python.org/3/builtins/stdtypes.html#list)[[`str`](https://docs.python.org/3/builtins/stdtypes.html#str)] | [`None`](https://docs.python.org/3/builtins/constants.html#None)) – The column names for the second source of data, if it is a numpy array.
@@ -2375,11 +2375,11 @@ Takes a mapping of k-dimensional (kd) embeddings and returns a dict of the 2d
 umap embeddings
 
 * **Parameters:**
-  * **kd_embeddings** ([`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`KT`), [`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)[[`float`](https://docs.python.org/3/builtins/functions.html#float)]]) – a dict of kd embeddings
-  * **embeddings_func** (`Union`[[`Literal`](https://docs.python.org/3/library/typing.html#typing.Literal)[`'umap'`, `'ncvis'`, `'tsne'`, `'pca'`], [`Callable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)[[[`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)[[`float`](https://docs.python.org/3/builtins/functions.html#float)]]], [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`tuple`](https://docs.python.org/3/builtins/stdtypes.html#tuple)[[`float`](https://docs.python.org/3/builtins/functions.html#float), [`float`](https://docs.python.org/3/builtins/functions.html#float)]]]]) – the function to compute the embeddings
+  * **kd_embeddings** ([`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)[`KT`, [`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)[[`float`](https://docs.python.org/3/builtins/functions.html#float)]]) – a dict of kd embeddings
+  * **embeddings_func** ([`Union`](https://docs.python.org/3/library/typing.html#typing.Union)[[`Literal`](https://docs.python.org/3/library/typing.html#typing.Literal)[`'umap'`, `'ncvis'`, `'tsne'`, `'pca'`], [`Callable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)[[[`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)[[`float`](https://docs.python.org/3/builtins/functions.html#float)]]], [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`tuple`](https://docs.python.org/3/builtins/stdtypes.html#tuple)[[`float`](https://docs.python.org/3/builtins/functions.html#float), [`float`](https://docs.python.org/3/builtins/functions.html#float)]]]]) – the function to compute the embeddings
   * **preprocessors** – a list of preprocessors to apply to the embeddings
 * **Return type:**
-  [`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`KT`), [`tuple`](https://docs.python.org/3/builtins/stdtypes.html#tuple)[[`float`](https://docs.python.org/3/builtins/functions.html#float), [`float`](https://docs.python.org/3/builtins/functions.html#float)]]
+  [`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)[`KT`, [`tuple`](https://docs.python.org/3/builtins/stdtypes.html#tuple)[[`float`](https://docs.python.org/3/builtins/functions.html#float), [`float`](https://docs.python.org/3/builtins/functions.html#float)]]
 * **Returns:**
   a dict of the 2d umap embeddings
 
@@ -2439,7 +2439,7 @@ of the 2d embeddings
 If key_col is not None, the keys are added as a column in the dataframe.
 
 * **Parameters:**
-  * **planar_embeddings_kv** ([`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`KT`), [`tuple`](https://docs.python.org/3/builtins/stdtypes.html#tuple)[[`float`](https://docs.python.org/3/builtins/functions.html#float), [`float`](https://docs.python.org/3/builtins/functions.html#float)]]) – a dict of planar embeddings
+  * **planar_embeddings_kv** ([`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)[`KT`, [`tuple`](https://docs.python.org/3/builtins/stdtypes.html#tuple)[[`float`](https://docs.python.org/3/builtins/functions.html#float), [`float`](https://docs.python.org/3/builtins/functions.html#float)]]) – a dict of planar embeddings
   * **x_col** ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str)) – the name of the x column
   * **y_col** ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str)) – the name of the y column
   * **index_name** ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str) | [`None`](https://docs.python.org/3/builtins/constants.html#None)) – the name of the index
@@ -2489,7 +2489,7 @@ of the 2d embeddings
 If key_col is not None, the keys are added as a column in the dataframe.
 
 * **Parameters:**
-  * **planar_embeddings_kv** ([`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)[[`TypeVar`](https://docs.python.org/3/library/typing.html#typing.TypeVar)(`KT`), [`tuple`](https://docs.python.org/3/builtins/stdtypes.html#tuple)[[`float`](https://docs.python.org/3/builtins/functions.html#float), [`float`](https://docs.python.org/3/builtins/functions.html#float)]]) – a dict of planar embeddings
+  * **planar_embeddings_kv** ([`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)[`KT`, [`tuple`](https://docs.python.org/3/builtins/stdtypes.html#tuple)[[`float`](https://docs.python.org/3/builtins/functions.html#float), [`float`](https://docs.python.org/3/builtins/functions.html#float)]]) – a dict of planar embeddings
   * **x_col** ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str)) – the name of the x column
   * **y_col** ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str)) – the name of the y column
   * **index_name** ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str) | [`None`](https://docs.python.org/3/builtins/constants.html#None)) – the name of the index
@@ -2516,13 +2516,13 @@ Takes a mapping of k-dimensional (kd) embeddings and returns a dict of the 2d
 umap embeddings
 
 * **Parameters:**
-  * **kd_embeddings** – a dict of kd embeddings
-  * **embeddings_func** – the function to compute the embeddings
+  * **kd_embeddings** ([`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)[`KT`, [`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)[[`float`](https://docs.python.org/3/builtins/functions.html#float)]]) – a dict of kd embeddings
+  * **embeddings_func** ([`Union`](https://docs.python.org/3/library/typing.html#typing.Union)[[`Literal`](https://docs.python.org/3/library/typing.html#typing.Literal)[`'umap'`, `'ncvis'`, `'tsne'`, `'pca'`], [`Callable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)[[[`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)[[`float`](https://docs.python.org/3/builtins/functions.html#float)]]], [`Iterable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)[[`tuple`](https://docs.python.org/3/builtins/stdtypes.html#tuple)[[`float`](https://docs.python.org/3/builtins/functions.html#float), [`float`](https://docs.python.org/3/builtins/functions.html#float)]]]]) – the function to compute the embeddings
   * **preprocessors** – a list of preprocessors to apply to the embeddings
+* **Return type:**
+  [`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)[`KT`, [`tuple`](https://docs.python.org/3/builtins/stdtypes.html#tuple)[[`float`](https://docs.python.org/3/builtins/functions.html#float), [`float`](https://docs.python.org/3/builtins/functions.html#float)]]
 * **Returns:**
   a dict of the 2d umap embeddings
-* **Return type:**
-  [*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict)[KT, [*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)[[*float*](https://docs.python.org/3/builtins/functions.html#float), [*float*](https://docs.python.org/3/builtins/functions.html#float)]]
 
 ### Example
 
@@ -2594,40 +2594,38 @@ Facades for vector databases
 
 # About this build
 
-This documentation was built on **2026-10-13 15:37 UTC** from commit <a href="https://github.com/thorwhalen/imbed/commit/658ef872b5b731582e1944b21cd93caa2ae44567"><code>658ef87</code></a> on branch <code>main</code>, for **imbed 0.0.27** (from <code>pyproject.toml</code>).
+This documentation was built on **2026-11-21 15:08 UTC** from commit <a href="https://github.com/addaix/imbed/commit/1cbd20e156761385a2227da024bc047ec406eea9"><code>1cbd20e</code></a> on branch <code>main</code>, for **imbed 0.0.28** (from <code>pyproject.toml</code>).
 
-#### WARNING
-The documentation and the package may be misaligned:
-
-- The documented version (0.0.27) is behind the latest release on PyPI (0.0.28): `pip install imbed` gives newer code than these docs describe.
+#### NOTE
+Nothing suggests a mismatch: the tree was clean at the commit above, and the documented version is the one on PyPI.
 
 ## Source
 
-|                     |                                                                                                                                                         |
-|---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Commit              | <a href="https://github.com/thorwhalen/imbed/commit/658ef872b5b731582e1944b21cd93caa2ae44567"><code>658ef872b5b731582e1944b21cd93caa2ae44567</code></a> |
-| Branch              | <code>main</code>                                                                                                                                       |
-| Tags at this commit | none                                                                                                                                                    |
-| Working tree        | clean                                                                                                                                                   |
-| Remote              | <code>https://github.com/thorwhalen/imbed</code>                                                                                                        |
+|                     |                                                                                                                                                     |
+|---------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| Commit              | <a href="https://github.com/addaix/imbed/commit/1cbd20e156761385a2227da024bc047ec406eea9"><code>1cbd20e156761385a2227da024bc047ec406eea9</code></a> |
+| Branch              | <code>main</code>                                                                                                                                   |
+| Tags at this commit | none                                                                                                                                                |
+| Working tree        | clean                                                                                                                                               |
+| Remote              | <code>https://github.com/addaix/imbed</code>                                                                                                        |
 
 ## Continuous integration
 
 |              |                                                                                            |
 |--------------|--------------------------------------------------------------------------------------------|
-| Repository   | <code>thorwhalen/imbed</code>                                                              |
-| Run          | <a href="https://github.com/thorwhalen/imbed/actions/runs/38423189863">38423189863</a>     |
+| Repository   | <code>addaix/imbed</code>                                                                  |
+| Run          | <a href="https://github.com/addaix/imbed/actions/runs/44917280889">44917280889</a>         |
 | Ref          | <code>refs/heads/main</code>                                                               |
-| Event commit | <code>658ef872b5b731582e1944b21cd93caa2ae44567</code> (in the history of the built commit) |
+| Event commit | <code>1cbd20e156761385a2227da024bc047ec406eea9</code> (in the history of the built commit) |
 
 ## Tools
 
 |          |         |
 |----------|---------|
-| epythet  | 0.2.16  |
-| Sphinx   | 9.1.0   |
+| epythet  | 0.2.22  |
+| Sphinx   | 9.1.1   |
 | docutils | 0.22.4  |
-| Python   | 3.12.15 |
+| Python   | 3.12.16 |
 
 ## Configuration as resolved
 
@@ -2643,14 +2641,14 @@ The documentation and the package may be misaligned:
 
 ## Package on PyPI
 
-Latest release: <a href="https://pypi.org/project/imbed/0.0.28/">0.0.28</a>, newer than the documented version (0.0.27).
+Latest release: <a href="https://pypi.org/project/imbed/0.0.28/">0.0.28</a>, the same as the documented version.
 
 ## Reproduce
 
 ```bash
-git clone https://github.com/thorwhalen/imbed && cd imbed
-git checkout 658ef872b5b731582e1944b21cd93caa2ae44567
-pip install "epythet==0.2.16"
+git clone https://github.com/addaix/imbed && cd imbed
+git checkout 1cbd20e156761385a2227da024bc047ec406eea9
+pip install "epythet==0.2.22"
 epythet quickstart . --ignore tests/ scrap/ examples/
 ```
 

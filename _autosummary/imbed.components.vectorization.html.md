@@ -54,10 +54,10 @@ Calculate simple (pseudo-)semantic features of the text.
 This is meant to be used as a placeholder vectorizer (a.k.a. embedding function) for
 text segments, for testing mainly.
 
-* **Return type:**
-  [`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)[[`float`](https://docs.python.org/3/builtins/functions.html#float)]
-
 ```pycon
 >>> three_text_features("Hello, world!")
 (2, 12, 2)
 ```
+
+* **Return type:**
+  [`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)[[`float`](https://docs.python.org/3/builtins/functions.html#float)]
