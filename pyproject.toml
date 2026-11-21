@@ -61,10 +61,10 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://thorwhalen.github.io/imbed/"
-Repository = "https://github.com/thorwhalen/imbed"
-Issues = "https://github.com/thorwhalen/imbed/issues"
-Changelog = "https://github.com/thorwhalen/imbed/blob/main/CHANGELOG.md"
+Homepage = "https://addaix.github.io/imbed/"
+Repository = "https://github.com/addaix/imbed"
+Issues = "https://github.com/addaix/imbed/issues"
+Changelog = "https://github.com/addaix/imbed/blob/main/CHANGELOG.md"
 
 [project.optional-dependencies]
 dev = [
