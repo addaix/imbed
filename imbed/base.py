@@ -55,6 +55,11 @@ def identity(x):
     return x
 
 
+def _no_value(key):
+    """Default ``value_of_key``: every key maps to ``None``."""
+    return None
+
+
 @dataclass
 class ComputedValuesMapping(KvReader, Mapping):
     """
@@ -71,7 +76,7 @@ class ComputedValuesMapping(KvReader, Mapping):
     """
 
     keys_factory: Callable[[], Iterable[KT]] | None
-    value_of_key: Callable[[KT], Any] = partial(identity, None)
+    value_of_key: Callable[[KT], Any] = _no_value
 
     def __post_init__(self):
         if not callable(self.keys_factory):
