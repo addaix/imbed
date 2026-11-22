@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "built_at": "2026-11-21T15:08:45Z",
+  "built_at": "2026-11-22T22:20:09Z",
   "package": {
     "name": "imbed",
     "version": "0.0.28",
@@ -9,28 +9,28 @@
   },
   "git": {
     "available": true,
-    "commit": "1cbd20e156761385a2227da024bc047ec406eea9",
-    "short_commit": "1cbd20e",
+    "commit": "3368cccbc7a377f4dd027ef57c94fce754caa638",
+    "short_commit": "3368ccc",
     "branch": "main",
     "tags": [],
     "dirty": false,
     "remote_url": "https://github.com/addaix/imbed",
-    "commit_url": "https://github.com/addaix/imbed/commit/1cbd20e156761385a2227da024bc047ec406eea9",
+    "commit_url": "https://github.com/addaix/imbed/commit/3368cccbc7a377f4dd027ef57c94fce754caa638",
     "error": null
   },
   "ci": {
     "provider": "github",
     "repository": "addaix/imbed",
-    "sha": "1cbd20e156761385a2227da024bc047ec406eea9",
+    "sha": "3368cccbc7a377f4dd027ef57c94fce754caa638",
     "sha_in_history": true,
     "ref": "refs/heads/main",
     "ref_name": "main",
-    "run_id": "44917280889",
-    "run_url": "https://github.com/addaix/imbed/actions/runs/44917280889",
+    "run_id": "45076760034",
+    "run_url": "https://github.com/addaix/imbed/actions/runs/45076760034",
     "server_url": "https://github.com"
   },
   "tools": {
-    "epythet": "0.2.22",
+    "epythet": "0.2.23",
     "sphinx": "9.1.1",
     "docutils": "0.22.4",
     "python": "3.12.16"
@@ -64,7 +64,7 @@
     "relation": "same",
     "error": null
   },
-  "reproduce": "git clone https://github.com/addaix/imbed && cd imbed\ngit checkout 1cbd20e156761385a2227da024bc047ec406eea9\npip install \"epythet==0.2.22\"\nepythet quickstart . --ignore tests/ scrap/ examples/",
+  "reproduce": "git clone https://github.com/addaix/imbed && cd imbed\ngit checkout 3368cccbc7a377f4dd027ef57c94fce754caa638\npip install \"epythet==0.2.23\"\nepythet quickstart . --ignore tests/ scrap/ examples/",
   "warnings": [],
   "alignment": {
     "aligned": true,

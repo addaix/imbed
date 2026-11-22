@@ -2,7 +2,7 @@
 
 # About this build
 
-This documentation was built on **2026-11-21 15:08 UTC** from commit <a href="https://github.com/addaix/imbed/commit/1cbd20e156761385a2227da024bc047ec406eea9"><code>1cbd20e</code></a> on branch <code>main</code>, for **imbed 0.0.28** (from <code>pyproject.toml</code>).
+This documentation was built on **2026-11-22 22:20 UTC** from commit <a href="https://github.com/addaix/imbed/commit/3368cccbc7a377f4dd027ef57c94fce754caa638"><code>3368ccc</code></a> on branch <code>main</code>, for **imbed 0.0.28** (from <code>pyproject.toml</code>).
 
 #### NOTE
 Nothing suggests a mismatch: the tree was clean at the commit above, and the documented version is the one on PyPI.
@@ -11,7 +11,7 @@ Nothing suggests a mismatch: the tree was clean at the commit above, and the doc
 
 |                     |                                                                                                                                                     |
 |---------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| Commit              | <a href="https://github.com/addaix/imbed/commit/1cbd20e156761385a2227da024bc047ec406eea9"><code>1cbd20e156761385a2227da024bc047ec406eea9</code></a> |
+| Commit              | <a href="https://github.com/addaix/imbed/commit/3368cccbc7a377f4dd027ef57c94fce754caa638"><code>3368cccbc7a377f4dd027ef57c94fce754caa638</code></a> |
 | Branch              | <code>main</code>                                                                                                                                   |
 | Tags at this commit | none                                                                                                                                                |
 | Working tree        | clean                                                                                                                                               |
@@ -22,15 +22,15 @@ Nothing suggests a mismatch: the tree was clean at the commit above, and the doc
 |              |                                                                                            |
 |--------------|--------------------------------------------------------------------------------------------|
 | Repository   | <code>addaix/imbed</code>                                                                  |
-| Run          | <a href="https://github.com/addaix/imbed/actions/runs/44917280889">44917280889</a>         |
+| Run          | <a href="https://github.com/addaix/imbed/actions/runs/45076760034">45076760034</a>         |
 | Ref          | <code>refs/heads/main</code>                                                               |
-| Event commit | <code>1cbd20e156761385a2227da024bc047ec406eea9</code> (in the history of the built commit) |
+| Event commit | <code>3368cccbc7a377f4dd027ef57c94fce754caa638</code> (in the history of the built commit) |
 
 ## Tools
 
 |          |         |
 |----------|---------|
-| epythet  | 0.2.22  |
+| epythet  | 0.2.23  |
 | Sphinx   | 9.1.1   |
 | docutils | 0.22.4  |
 | Python   | 3.12.16 |
@@ -55,8 +55,8 @@ Latest release: <a href="https://pypi.org/project/imbed/0.0.28/">0.0.28</a>, the
 
 ```bash
 git clone https://github.com/addaix/imbed && cd imbed
-git checkout 1cbd20e156761385a2227da024bc047ec406eea9
-pip install "epythet==0.2.22"
+git checkout 3368cccbc7a377f4dd027ef57c94fce754caa638
+pip install "epythet==0.2.23"
 epythet quickstart . --ignore tests/ scrap/ examples/
 ```
 
