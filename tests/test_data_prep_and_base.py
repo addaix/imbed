@@ -65,11 +65,6 @@ def test_re_clusters_equal_merge_and_split():
     assert len(set(merged)) == 2
 
 
-@pytest.mark.xfail(
-    strict=True,
-    raises=ValueError,
-    reason="re_clusters' split branch reuses a stale mask after relabeling the largest cluster",
-)
 def test_re_clusters_split():
     X, truth = _blobs()
     split = re_clusters(X, truth.copy(), 5)
@@ -82,11 +77,6 @@ def test_computed_values_mapping():
     assert list(ComputedValuesMapping(lambda: ["x", "y"])) == ["x", "y"]
 
 
-@pytest.mark.xfail(
-    strict=True,
-    raises=TypeError,
-    reason="the default value_of_key is partial(identity, None), which calls identity(None, key)",
-)
 def test_computed_values_mapping_default_value():
     assert ComputedValuesMapping(("x",))["x"] is None
 

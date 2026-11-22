@@ -8,13 +8,6 @@ import numpy as np
 import pandas as pd
 
 
-# TODO: Make incremental version
-def kmeans_cluster_indices(data_matrix, n_clusters: int = 8, **learner_kwargs):
-    kmeans = KMeans(n_clusters=n_clusters, **learner_kwargs)
-    kmeans.fit(data_matrix)
-    return kmeans.labels_
-
-
 from typing import Union
 from collections.abc import Iterable, Callable
 
@@ -165,13 +158,12 @@ def re_clusters(X, labels, k):
             largest_cluster = max(set(re_labels), key=list(re_labels).count)
             sub_X = X[re_labels == largest_cluster]
             sub_cluster = AgglomerativeClustering(n_clusters=2).fit(sub_X)
-            for sub_label in set(sub_cluster.labels_):
-                current_max_label += 1
-                re_labels[re_labels == largest_cluster] = np.where(
-                    sub_cluster.labels_ == sub_label,
-                    current_max_label,
-                    re_labels[re_labels == largest_cluster],
-                )
+            # relabel using a mask computed once, before any relabeling
+            in_largest = re_labels == largest_cluster
+            current_max_label += 1
+            re_labels[in_largest] = np.where(
+                sub_cluster.labels_ == 0, largest_cluster, current_max_label
+            )
         return re_labels
 
 
