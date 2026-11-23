@@ -1,6 +1,5 @@
 """Utils for components"""
 
-import pickle
 from functools import lru_cache, wraps
 import os
 from typing import Callable, TypeVar, Any
@@ -8,8 +7,6 @@ from imbed.util import pkg_files
 
 T = TypeVar("T")
 
-component_files = pkg_files.joinpath("components")
-standard_components_file = component_files.joinpath("standard_components.pickle")
 
 
 class ComponentRegistry(dict):
@@ -163,20 +160,15 @@ def _get_standard_components_from_modules():
     return {kind: get_component_store(kind) for kind in _component_kinds}
 
 
-def _get_standard_components_from_file(refresh=False):
-    """Load the standard components from a pickle file."""
-    if refresh or not standard_components_file.exists():
-        components = _get_standard_components_from_modules()
-        standard_components_file.write_bytes(pickle.dumps(components))
-    return pickle.loads(standard_components_file.read_bytes())
-
-
 @lru_cache
 def get_standard_components(refresh=False):
     """Get the standard components for the project.
+
+    They are collected from the component modules on first call (cached). The ``refresh``
+    argument is kept for compatibility and has no effect: nothing is read from a shipped
+    file any more (see addaix/imbed#23).
 
     Returns:
         A dictionary of standard components, each containing registered processing functions
     """
     return _get_standard_components_from_modules()
-    return _get_standard_components_from_file(refresh=refresh)
