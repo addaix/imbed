@@ -20,7 +20,7 @@ There are two major aspects the `imbed` wishes to contribute two that.
 * visualize: exploring the data visually (which requires yet another kind of embedding, to 2D or 3D vectors)
 
 What we're looking for here is a setup where with minimal **configuration** (not code), we can make pipelines where we can point to the original data, enter a few parameters, 
-wait, and get a "search controller" (that is, an object that has all the methods we need to do retrieval stuff). Here's an example of the kind of interface we'd like to target.
+wait, and get a "search controller" (that is, an object that has all the methods we need to do retrieval stuff). Here's an example of the kind of interface we'd like to target. **This is a design target: `mk_text_store`, `mk_segments_store` and `mk_search_controller` are not implemented yet.** Vector databases are not wrapped by imbed: use [`vd`](https://github.com/i2mint/vd) for that.
 
 ```python
 raw_docs = mk_text_store(
@@ -140,9 +140,9 @@ from imbed.util import get_codec_mappings
 print("Available codecs:", list(get_codec_mappings()[0].keys()))
 ```
 
-# Advanced Pipeline
+# Target pipeline (not implemented yet)
 
-For more complex use cases, imbed enables a configuration-driven pipeline approach:
+The configuration-driven pipeline imbed is aiming at. None of the `mk_*` functions below exist yet, and the vector store would come from `vd`:
 
 ```py
 # Example of the configuration-driven pipeline (conceptual)
